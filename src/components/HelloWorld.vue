@@ -31,10 +31,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    ...mapActions([
+      'getUsersFromAPI'
+    ])
+  },
+  created() {
+    this.getUsersFromAPI();
   }
 }
 </script>
