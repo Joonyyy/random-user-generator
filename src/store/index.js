@@ -10,7 +10,7 @@ export default new Vuex.Store({
 		users: {}
 	},
 	getters: {
-		relevantDataAllUsers(state) {
+		desktopDataAllUsers(state) {
 			return map(state.users, (user) => {
 				return {
 					info: {
@@ -20,7 +20,19 @@ export default new Vuex.Store({
 						phone: `Phone: ${user.phone}`,
 						email: user.email
 					},
-					pictures: user.picture
+					picture: user.picture.large
+				}
+			})
+		},
+		mobileDataAllUsers(state) {
+			return map(state.users, (user) => {
+				return {
+					info: {
+						name: `${user.name.first} ${user.name.last}`,
+						gender: user.gender.charAt(0).toUpperCase() + user.gender.slice(1),
+						age: `${user.registered.age} yrs. old`,
+					},
+					picture: user.picture.large
 				}
 			})
 		}

@@ -1,7 +1,7 @@
 <template>
 	<div class="card">
 		<div class="img-wrapper">
-			<img :src="imageSrcToUse"/>
+			<img :src="user.picture"/>
 		</div>
 
 		<div class="list-wrapper">
@@ -17,13 +17,6 @@ export default {
 	name: 'UserCard',
 	props: {
 		user: Object
-	},
-	computed: {
-		imageSrcToUse() {
-			const pictures = this.user.pictures;
-
-			return pictures.large;
-		}
 	}
 }
 </script>
@@ -32,10 +25,10 @@ export default {
 .card {
 	border: 1px solid blue;
 	display: flex;
+	flex: 0 0 25%;
 	flex-direction: column;
 	margin: 1rem auto;
 	padding: 1rem;
-	width: 28%;
 }
 
 img {
@@ -44,13 +37,14 @@ img {
 }
 
 .img-wrapper {
+	border: 1px solid blue;
+	margin: 0 auto;
 	max-height: 100%;
 	width: 100%;
-	border: 1px solid blue;
 }
 
 .list-wrapper {
-	width: 50%;
+	width: 100%;
 }
 
 ul {

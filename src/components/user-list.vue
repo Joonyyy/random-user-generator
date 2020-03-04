@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
 		<user-card
-			v-for="user in relevantDataAllUsers"
-			:key="user.email"
+			v-for="user in userDataBasedOnWindow"
+			:key="user.name"
 			:user="user"/>
   </div>
 </template>
@@ -16,6 +16,11 @@ export default {
 	components: {
 		UserCard
 	},
+	data() {
+		return {
+			windowWidth: 0
+		}
+	},
 	methods: {
 		...mapActions([
 			'getUsersFromAPI'
@@ -23,11 +28,20 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'relevantDataAllUsers'
-		])
+			'desktopDataAllUsers',
+			'mobileDataAllUsers'
+		]),
+		userDataBasedOnWindow() {
+			return (this.windowWidth > 768) ? this.desktopDataAllUsers : this.mobileDataAllUsers;
+		}
 	},
 	created() {
 		this.getUsersFromAPI();
+	},
+	mounted() {
+		window.addEventListener('resize', () => {
+			this.windowWidth = window.innerWidth
+		})
 	}
 };
 </script>
