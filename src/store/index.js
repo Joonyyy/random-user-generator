@@ -15,10 +15,10 @@ export default new Vuex.Store({
 				return {
 					info: {
 						name: `${user.name.first} ${user.name.last}`,
-						email: user.email,
-						phone: user.phone,
-						age: user.registered.age,
-						gender: user.gender
+						gender: user.gender.charAt(0).toUpperCase() + user.gender.slice(1),
+						age: `${user.registered.age} yrs. old`,
+						phone: `Phone: ${user.phone}`,
+						email: user.email
 					},
 					pictures: user.picture
 				}
@@ -33,7 +33,7 @@ export default new Vuex.Store({
 	actions: {
 		getUsersFromAPI({ commit }) {
 			axios
-				.get('https://randomuser.me/api/?results=5')
+				.get('https://randomuser.me/api/?results=6')
 				.then(({ data }) => {
 					commit('setUsers', data.results);
 				})

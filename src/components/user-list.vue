@@ -34,6 +34,7 @@ export default {
 
 <style scoped>
 .hello {
-	border: 1px solid black;
+	display: flex;
+	flex-wrap: wrap;
 }
 </style>
