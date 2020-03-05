@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
-import { map } from 'underscore'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
+import { map } from 'underscore';
 
 Vue.use(Vuex)
 
@@ -21,16 +21,12 @@ export default new Vuex.Store({
 						email: user.email
 					},
 					picture: user.picture.large,
-					jsonData: user
+					fullJSON: user
 				}
 			})
 		},
 		mobileDataAllUsers(state) {
 			return map(state.users, (user) => {
-				const arrayOfUserInfo = map(user, (value, key) => {
-					return {[key]: value};
-				});
-
 				return {
 					info: {
 						name: `${user.name.first} ${user.name.last}`,
@@ -38,7 +34,7 @@ export default new Vuex.Store({
 						age: `${user.registered.age} yrs. old`,
 					},
 					picture: user.picture.large,
-					jsonData: arrayOfUserInfo
+					fullJSON: user
 				}
 			})
 		}
@@ -52,7 +48,7 @@ export default new Vuex.Store({
 		getUsersFromAPI({ commit }) {
 			axios
 				.get('https://randomuser.me/api/?results=12')
-				.then(({ data }) => {
+				.then(({data}) => {
 					commit('setUsers', data.results);
 				})
 				.catch((err) => {

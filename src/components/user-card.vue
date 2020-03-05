@@ -1,34 +1,39 @@
 <template>
 	<div class="card col-6 col-md-4 col-lg-3">
 		<div class="img-wrapper">
-			<img :src="user.picture"/>
+			<img :src="user.picture" alt=""/>
 		</div>
 
 		<div class="list-wrapper">
 			<ul>
 				<li v-for="(info, key) in user.info" :key="key">{{ info }}</li>
 			</ul>
-		</div>
 
-		<download-csv
-			class="btn btn-default"
-			:data="user.jsonData"
-			name="filename.csv">
-			Download CSV (This is a slot)
-		</download-csv>
+			<button class="btn btn-primary" @click="csvExport" aria-label="Click to Export User Info as a CSV File">Export CSV...</button>
+		</div>
 	</div>
 </template>
 
 <script>
-import JsonCSV from 'vue-json-csv';
-
 export default {
 	name: 'UserCard',
 	props: {
 		user: Object
 	},
-	components: {
-		'download-csv': JsonCSV
+	methods: {
+		csvExport() {
+			let converter = require('json-2-csv');
+
+			converter.json2csvAsync(this.user.fullJSON)
+				.then((csv) => {
+					let fileDownload = require('js-file-download');
+
+					fileDownload(csv, 'data.csv');
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 	}
 }
 </script>

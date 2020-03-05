@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UserCard from './user-card.vue'
+import UserCard from './user-card.vue';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
