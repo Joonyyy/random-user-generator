@@ -45,9 +45,9 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		getUsersFromAPI({ commit }) {
+		getUsersFromAPI({ commit }, pageIndex) {
 			axios
-				.get('https://randomuser.me/api/?results=12')
+				.get(`https://randomuser.me/api/?page=${pageIndex}&results=12&seed=abc`)
 				.then(({data}) => {
 					commit('setUsers', data.results);
 				})

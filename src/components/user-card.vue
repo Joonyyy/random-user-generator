@@ -39,16 +39,15 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+	font-size: 14px;
+}
+
 .card {
 	border: 1px solid blue;
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-}
-
-img {
-	min-height: 100%;
-	width: 100%;
 }
 
 .img-wrapper {
@@ -59,6 +58,11 @@ img {
 }
 
 .list-wrapper {
+	width: 100%;
+}
+
+img {
+	min-height: 100%;
 	width: 100%;
 }
 

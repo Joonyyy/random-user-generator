@@ -1,21 +1,31 @@
 <template>
 	<div class="row">
-		<div class="hello col-12">
-				<user-card
-					v-for="user in userDataBasedOnWindow"
-					:key="user.name"
-					:user="user"/>
+		<div class="headline col-12">
+			<h1>Random User Generator</h1>
+		</div>
+
+		<div class="card-container col-12">
+			<user-card
+				v-for="user in userDataBasedOnWindow"
+				:key="user.name"
+				:user="user"/>
+		</div>
+
+		<div class="col-12">
+			<pagination @pageChanged="changePages"/>
 		</div>
 	</div>
 </template>
 
 <script>
+import Pagination from './pagination.vue';
 import UserCard from './user-card.vue';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'UserList',
 	components: {
+		Pagination,
 		UserCard
 	},
 	data() {
@@ -26,7 +36,10 @@ export default {
 	methods: {
 		...mapActions([
 			'getUsersFromAPI'
-		])
+		]),
+		changePages(pageNumber) {
+			this.getUsersFromAPI(pageNumber);
+		}
 	},
 	computed: {
 		...mapGetters([
@@ -38,7 +51,7 @@ export default {
 		}
 	},
 	created() {
-		this.getUsersFromAPI();
+		this.getUsersFromAPI(1);
 	},
 	mounted() {
 		window.addEventListener('resize', () => {
@@ -49,9 +62,17 @@ export default {
 </script>
 
 <style scoped>
-.hello {
+.card-container {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 2rem;
+}
+
+.headline {
+	color: blue;
+}
+
+.row {
+	margin: 0;
 }
 </style>
