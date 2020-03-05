@@ -29,14 +29,14 @@ export default {
 		nextPage() {
 			if (this.currentPage < this.pageMax) {
 				this.currentPage++;
+				this.$emit('pageChanged', this.currentPage);
 			}
-			this.$emit('pageChanged', this.currentPage);
 		},
 		previousPage() {
 			if (this.currentPage > this.pageMin) {
 				this.currentPage--;
+				this.$emit('pageChanged', this.currentPage);
 			}
-			this.$emit('pageChanged', this.currentPage);
 		},
 		setPage(index) {
 			this.currentPage = index;
