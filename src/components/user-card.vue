@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="card col-6 col-md-4 col-lg-3">
 		<div class="img-wrapper">
 			<img :src="user.picture"/>
 		</div>
@@ -25,9 +25,7 @@ export default {
 .card {
 	border: 1px solid blue;
 	display: flex;
-	flex: 0 0 25%;
 	flex-direction: column;
-	margin: 1rem auto;
 	padding: 1rem;
 }
 

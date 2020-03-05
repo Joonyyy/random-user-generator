@@ -1,10 +1,12 @@
 <template>
-  <div class="hello">
-		<user-card
-			v-for="user in userDataBasedOnWindow"
-			:key="user.name"
-			:user="user"/>
-  </div>
+	<div class="row">
+		<div class="hello col-12">
+				<user-card
+					v-for="user in userDataBasedOnWindow"
+					:key="user.name"
+					:user="user"/>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -18,7 +20,7 @@ export default {
 	},
 	data() {
 		return {
-			windowWidth: 0
+			windowWidth: window.innerWidth
 		}
 	},
 	methods: {
@@ -32,7 +34,7 @@ export default {
 			'mobileDataAllUsers'
 		]),
 		userDataBasedOnWindow() {
-			return (this.windowWidth > 768) ? this.desktopDataAllUsers : this.mobileDataAllUsers;
+			return (this.windowWidth > 992) ? this.desktopDataAllUsers : this.mobileDataAllUsers;
 		}
 	},
 	created() {
@@ -50,5 +52,6 @@ export default {
 .hello {
 	display: flex;
 	flex-wrap: wrap;
+	padding: 2rem;
 }
 </style>
