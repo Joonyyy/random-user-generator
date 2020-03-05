@@ -9,14 +9,26 @@
 				<li v-for="(info, key) in user.info" :key="key">{{ info }}</li>
 			</ul>
 		</div>
+
+		<download-csv
+			class="btn btn-default"
+			:data="user.jsonData"
+			name="filename.csv">
+			Download CSV (This is a slot)
+		</download-csv>
 	</div>
 </template>
 
 <script>
+import JsonCSV from 'vue-json-csv';
+
 export default {
 	name: 'UserCard',
 	props: {
 		user: Object
+	},
+	components: {
+		'download-csv': JsonCSV
 	}
 }
 </script>

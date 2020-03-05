@@ -20,19 +20,25 @@ export default new Vuex.Store({
 						phone: `Phone: ${user.phone}`,
 						email: user.email
 					},
-					picture: user.picture.large
+					picture: user.picture.large,
+					jsonData: user
 				}
 			})
 		},
 		mobileDataAllUsers(state) {
 			return map(state.users, (user) => {
+				const arrayOfUserInfo = map(user, (value, key) => {
+					return {[key]: value};
+				});
+
 				return {
 					info: {
 						name: `${user.name.first} ${user.name.last}`,
 						gender: user.gender.charAt(0).toUpperCase() + user.gender.slice(1),
 						age: `${user.registered.age} yrs. old`,
 					},
-					picture: user.picture.large
+					picture: user.picture.large,
+					jsonData: arrayOfUserInfo
 				}
 			})
 		}
