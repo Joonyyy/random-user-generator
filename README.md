@@ -1,4 +1,4 @@
-# userpagination
+Generates user information cards based on data from a generic API which spits out randomly generated user data.
 
 ## Project setup
 ```
@@ -14,11 +14,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
